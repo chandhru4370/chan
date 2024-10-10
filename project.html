@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>trixz.com</title>
+  <link rel="stylesheet" href="src/styles/designSystem.css">
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="src/styles/services.css">
+</head>
+<style>
+  .body {
+    display: grid;
+    min-height: 100vh;
+  }
+
+  .hero {
+    align-self: start;
+  }
+
+  .footerWrapper {
+    align-self: end;
+  }
+  .sectionOne {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+
+  .sectionOne__cards {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-family: var(--font-2);
+    text-align: center;
+    gap: 50px;
+  }
+
+  .sectionOne__content--text {
+    font-size: var(--sub);
+    font-family: var(--font-2);
+  }
+
+  [class^="sectionOne__cards--"] {
+    /* border: 2px solid red; */
+    padding: 40px 40px;
+    border-radius: 6px;
+    display: grid;
+    gap: 15px;
+    box-shadow: var(--shadow-1);
+  }
+
+  .price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .amount {
+    font-size: var(--h1);
+    font-weight: bold;
+  }
+
+  .time {
+    font-size: var(--body);
+    color: var(--color-dark-75);
+  }
+
+  .info {
+    color: var(--color-dark-75);
+  }
+
+  .bi-check-lg {
+    color: var(--color-green-100);
+  }
+
+  .features {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dark-btn {
+    justify-self: center;
+  }
+
+  @media (max-width: 1024px) {
+    .sectionOne__cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sectionOne__cards {
+      grid-template-columns: repeat(1, 0.7fr);
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 568px) {
+    .sectionOne__cards {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  .slider {
+    width: 100%;
+    height: 510px;
+    position: relative;
+  }
+
+  .slider img {
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* transition: all 0.5s ease-in-out; */
+  }
+
+  .slider img:first-child {
+    z-index: 1;
+  }
+
+  .slider img:nth-child(2) {
+    z-index: 0;
+  }
+
+  .navigation-button {
+    text-align: center;
+    position: relative;
+  }
+
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .active,
+  .dot:hover {
+    background-color: #717171;
+  }
+.pro1{
+height: 90;
+width: 65;
+}
+
+</style>
+
+<div>
+  <div class="hero">
+    <div class="navbar container">
+      <div class="navbar__logo">
+        <img src="logo.png" alt="" class="navbar__logo--image">
+        <div class="navbar__logo--text">Hello</div>
+      </div>
+      <div class="navbar__menu hidden">
+        <a href="index.html" class="navbar__menu--1">Home</a>
+        <a href="portfolio.html" class="navbar__menu--2">Portfolio</a>
+        <a href="services.html" class="navbar__menu--3">Services</a>
+        <a href="contact.html" class="navbar__menu--4">Contact</a>
+        <a href="project.html" class="navbar__menu--5">project</a>
+      </div>
+
+      <div class="navbar__icons">
+        <i class="bi bi-list"></i>
+        <i class="bi bi-x-lg hide"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider">
+    <img
+      id="img-1"
+      src="https://img.freepik.com/premium-photo/professional-slide-background-illustration-powerpoint-presentation_732449-2814.jpg"
+      alt="Image 1"
+    />
+    <img
+      id="img-2"
+src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7QbpA_lq4B7uASzzbYHT_lxyTXo1DEinZgCCKJkD3a6O77-J8OIPJbsbERm6k4y8EjDc&usqp=CAU"
+      alt="Image 2"
+    />
+    <img
+      id="img-3"
+      src="https://img.freepik.com/premium-photo/mountain-landscape-with-mountain-range-background_900396-9222.jpg"
+      alt="Image 3"
+    />
+  </div>
+  <div class="navigation-button">
+    <span class="dot active" onclick="changeSlide(0)"></span>
+    <span class="dot" onclick="changeSlide(1)"></span>
+    <span class="dot" onclick="changeSlide(2)"></span>
+  </div>
+  <script>
+    var currentImg = 0;
+    var imgs = document.querySelectorAll('.slider img');
+    let dots = document.querySelectorAll('.dot');
+    var interval = 3000;
+
+    // Second banner
+    var secondEventTitle = 'Hi! *Freshmen* Orientation Day';
+
+    // Third banner
+    var thirdEventDate = new Date('2023-02-01'); // pull this from database
+    var thirdEventDateString = thirdEventDate.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
+    var days = calculateDays(new Date(), thirdEventDate) || 0;
+    const countdownText = days > 0 ? `${days} days left` : 'Live Now!';
+
+    var secondImageUrl = `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTImW1BAlGca_zIE2HPl0VjVhsnS08yXQNjV8lAHkAzzT8E6Ah1jLcwhPiHmBgxSUS0H0&usqp=CAU${encodeURIComponent(secondEventTitle)}`;
+    var thirdImageUrl = `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIVvFS-NQ6JhAHG5wWTb57Ni_EieeT7ky4kmYv59RNijuap6LsP-r81TWyGAcXodyto3M&usqp=CAu${encodeURIComponent(
+      thirdEventDateString
+    )}/countdown/text/${encodeURIComponent(countdownText)}`;
+
+    document.getElementById('img-2').src = secondImageUrl;
+    document.getElementById('img-3').src = thirdImageUrl;
+
+    var timer = setInterval(changeSlide, interval);
+
+    function changeSlide(n) {
+      for (var i = 0; i < imgs.length; i++) {
+        imgs[i].style.opacity = 0;
+        dots[i].className = dots[i].className.replace(' active', '');
+      }
+
+      currentImg = (currentImg + 1) % imgs.length;
+
+      if (n != undefined) {
+        clearInterval(timer);
+        timer = setInterval(changeSlide, interval);
+        currentImg = n;
+      }
+
+      imgs[currentImg].style.opacity = 1;
+      dots[currentImg].className += ' active';
+    }
+
+    function calculateDays(today, eventDate) {
+      const difference = eventDate.getTime() - today.getTime();
+
+      return Math.ceil(difference / (1000 * 3600 * 24)); // convert to days
+    }
+  </script>
+
+
+<div data-spy="scroll" data-target="#navId">
+
+  <div id="navId">
+    <ul class="nav nav-tabs" role="tablist">
+
+    </ul>
+  </div>
+
+</div>
+
+
+<script>
+  $('div{1:div|body}').scrollspy({
+    target: '#navId'
+  });
+</script>
+<div class="robo"></div>
+<a href="https://docs.google.com/presentation/d/1A3hF_hCO5qj10Tr4Vk5Ez-Vyr2pbxZUn/edit#slide=id.p1">fire fighting robot using arduino uno</a>
+</div>
+<div class="porject1"></div>
+<img src="https://techatronic.com/wp-content/uploads/2022/12/Untitled-design-800x419.jpg"  alt " image" class="pro1">
