@@ -1,0 +1,413 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Trixz.com</title>
+    <link rel="stylesheet" href="reindex.css">
+    <script defer src="reindex.js"></script>
+    <link rel="icon" href="logo.png">
+</head>
+<body>
+<div class="parent-div">
+    <section class="header-section">
+        <p class="header-text">Tr<sup></sup> <small>ixz </small>.C<small>om</small></p>
+    </section>
+    <div class="vertical-section-holder">
+        <section class="vertical-section-1"></section>
+        <section class="vertical-section-2">
+            <div class="login-signup-holder">
+                <div class="forms">
+                    <form class="login-form">
+                        <h2 class="heading-text">Login</h2>
+                        <input type="text" placeholder="Username"/>
+                        <input type="text" placeholder="Password"/>
+                        <button type="submit">Login</button>
+                        <p class="message">Not registered? <a href="#">Signup</a></p>
+                    </form>
+                    <form class="register-form" id="register-form">
+                        <h2 class="heading-text">Sign Up</h2>
+                        <input type="text" id="fname" placeholder="First Name" required/>
+                        <p class="errors" id="error1"></p>
+                        <input type="text" id="lname" placeholder="Last Name" required/>
+                        <p class="errors" id="error2"></p>
+                        <input type="text" id="phone" placeholder="Phone" required/>
+                        <p class="errors" id="error3"></p>
+                        <input type="text" id="address" placeholder="Address" required/>
+                        <p class="errors" id="error4"></p>
+                        <input type="email" id="email" placeholder="Email" required/>
+                        <p class="errors" id="error5"></p>
+                        <input onkeyup="trigger()" type="password" id="password" placeholder="Password" required/>
+                        <p class="errors" id="error6"></p>
+                        <div class="indicator"><span class="weak"></span> <span class="medium"></span> <span
+                                class="strong"></span></div>
+                        <div class="strength"></div>
+                        <input type="password" id="cpassword" placeholder="Confirm Password" required/>
+                        <p class="errors" id="error7"></p>
+                        <button type="submit"> Signup</button>
+                        <p class="message">Already registered? <a href="#">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="footer">
+        <p>Designed by <b> Saurabh Dome </b> with ❤ </p>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js">
+</script>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("background.jpg");
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        overflow-x: hidden;
+    }
+
+    .parent-div {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .header-section {
+        background: black;
+        color: white;
+        padding: 13px 13px 13px 30px;
+    }
+
+    .header-text {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+        font-size: 200%;
+    }
+
+    .vertical-section-holder {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .vertical-section-1 {
+        flex: 0.65;
+        background-size: cover;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+    }
+
+    .vertical-section-2 {
+        flex: 0.35;
+    }
+
+    .login-signup-holder {
+        width: 360px;
+        padding: 10% 0 0;
+        margin: 0 auto;
+    }
+
+    .forms {
+        background: rgb(140, 200, 204);
+        max-width: 360px;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align: center;
+    }
+
+    .forms .heading-text {
+        padding: 10px;
+        color: midnightblue;
+    }
+
+    .forms input {
+        font-family: "Roboto", sans-serif;
+        outline: 1px;
+        background: white;
+        width: 100%;
+        border: 0;
+        margin: 15px 0 0 0;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .forms button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        margin: 10px 0 0 0;
+        background: #453FCF;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #ffffff;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    /*
+    .button {
+      display: inline-block;
+      border: none;
+      text-decoration: none;
+      font-family: "Roboto", sans-serif;
+      text-transform: uppercase;
+      background: #453FCF;
+      width: 89%;
+      padding: 15px;
+      color: #ffffff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    */
+    .forms .message {
+        margin: 15px 0 0;
+        color: aliceblue;
+        font-size: 16px;
+    }
+
+    .forms .message a {
+        color: #453FCF;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .forms button:hover, .forms button:active {
+        background: #7F39FF;
+    }
+
+    .button:hover, .button:active {
+        background: #7F39FF;
+    }
+
+    .forms .login-form {
+        display: none;
+    }
+
+    .errors {
+        color: darkblue;
+        font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+        font-size: 14px;
+        font-style: oblique;
+        text-align: left;
+    }
+
+    .indicator {
+        border-radius: 6px;
+        padding: 4px;
+        background-color: #453FCF;
+        height: 10px;
+        margin: 10px 0;
+        align-items: center;
+        justify-content: space-between;
+        display: none;
+    }
+
+    .indicator span {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background: lightgrey;
+        border-radius: 5px;
+    }
+
+    .indicator span:nth-child(2) {
+        margin: 0 3px;
+    }
+
+    .indicator span.active:before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .indicator span.weak:before {
+        background-color: #ff4757;
+    }
+
+    .indicator span.medium:before {
+        background-color: orange;
+    }
+
+    .indicator span.strong:before {
+        background-color: #23ad5c;
+    }
+
+    .strength {
+        border-radius: 6px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        background-color: #453FCF;
+        font-family: "Roboto", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        display: none;
+    }
+
+    .strength.weak {
+        color: #ff4757;
+    }
+
+    .strength.medium {
+        color: orange;
+    }
+
+    .strength.strong {
+        color: #23ad5c;
+    }
+
+    .footer {
+        font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        padding: 10px;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;
+    }
+
+</style>
+<script>
+    $(".message a").click(function () {
+        $("form").animate({
+            height: "toggle",
+            opacity: "toggle"
+        }, "slow")
+    })
+
+    const FName = document.getElementById("fname")
+    const LName = document.getElementById("lname")
+    const Phone = document.getElementById("phone")
+    const Address = document.getElementById("address")
+    const Email = document.getElementById("email")
+    const Pass = document.getElementById("password")
+    const CPass = document.getElementById("cpassword")
+
+    const FNameError = document.getElementById("error1")
+    const LNameError = document.getElementById("error2")
+    const PhoneError = document.getElementById("error3")
+    const AddressError = document.getElementById("error4")
+    const EmailError = document.getElementById("error5")
+    const PassError = document.getElementById("error6")
+    const CPassError = document.getElementById("error7")
+
+    const Strength = document.getElementById("strength")
+    const RegisterForm = document.getElementById("register-form")
+
+    const indicator = document.querySelector(".indicator");
+    const input = document.getElementById("password")
+    const weak = document.querySelector(".weak");
+    const medium = document.querySelector(".medium");
+    const strong = document.querySelector(".strong");
+    const text = document.querySelector(".strength");
+
+    let regExpWeak = /[a-zA-Z]+/;
+    let regExpMedium = /\d+/;
+    let regExpStrong = /[!@#$%^&*?_~(),-]+/;
+
+    function trigger() {
+        let no;
+        if (input.value !== "") {
+            indicator.style.display = "block";
+            indicator.style.display = "flex";
+            if (input.value.length <= 3 && (input.value.match(regExpWeak) || input.value.match(regExpMedium) || input.value.match(regExpStrong))) no = 1;
+            if (input.value.length >= 6 && ((input.value.match(regExpWeak) && input.value.match(regExpMedium)) || (input.value.match(regExpMedium) && input.value.match(regExpStrong)) || (input.value.match(regExpWeak) && input.value.match(regExpStrong)))) no = 2;
+            if (input.value.length >= 6 && input.value.match(regExpWeak) && input.value.match(regExpMedium) && input.value.match(regExpStrong)) no = 3;
+            if (no === 1) {
+                weak.classList.add("active");
+                text.style.display = "block";
+                text.textContent = "Your password is too week";
+                text.classList.add("weak");
+            }
+            if (no === 2) {
+                medium.classList.add("active");
+                text.textContent = "Your password is medium";
+                text.classList.add("medium");
+            } else {
+                medium.classList.remove("active");
+                text.classList.remove("medium");
+            }
+            if (no === 3) {
+                weak.classList.add("active");
+                medium.classList.add("active");
+                strong.classList.add("active");
+                text.textContent = "Your password is strong";
+                text.classList.add("strong");
+            } else {
+                strong.classList.remove("active");
+                text.classList.remove("strong");
+            }
+        } else {
+            indicator.style.display = "none";
+            text.style.display = "none";
+        }
+    }
+
+    function validateEmail(emailText) {
+        const re = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+        return re.test(String(emailText).toLowerCase());
+    }
+
+    function validatePhone(phoneText) {
+        const re = /^[\d\.\-]+$/;
+        return re.test(String(phoneText));
+    }
+
+    function validateName(nameText) {
+        const re = /^[a-zA-Z]*$/;
+        return re.test(String(nameText));
+    }
+
+    Pass.addEventListener('change', () => {
+        console.log("Yo")
+    })
+
+    RegisterForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        FNameError.innerHTML = ""
+        LNameError.innerHTML = ""
+        PhoneError.innerHTML = ""
+        AddressError.innerHTML = ""
+        EmailError.innerHTML = ""
+        PassError.innerHTML = ""
+        CPassError.innerHTML = ""
+
+        if (!validateName(FName.value)) {
+            FNameError.innerText = "Please enter a valid first name."
+        }
+
+        if (!validateName(LName.value)) {
+            LNameError.innerText = "Please enter a valid last name."
+        }
+
+        if (!validatePhone(Phone.value)) {
+            PhoneError.innerText = "Please enter a valid phone number."
+        }
+
+        if (!validateEmail(Email.value)) {
+            EmailError.innerText = "Please enter a valid email."
+        }
+
+        if (Pass.value.length < 8) {
+            PassError.innerHTML = "Password must be at least 8 digits."
+        } else if (Pass.value !== CPass.value) {
+            CPassError.innerHTML = "Password is not matching."
+            Pass.value = ""
+            CPass.value = ""
+        }
+    })
+
+</script>
+
+</body>
+</html>
